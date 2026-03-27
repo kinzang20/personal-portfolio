@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinzang Wangchuk | ICT Portfolio</title>
+
+<style>
+:root {
+  --bg: #020617;
+  --text: #e2e8f0;
+  --card: #0f172a;
+  --accent: #38bdf8;
+}
+
+.light {
+  --bg: #f1f5f9;
+  --text: #0f172a;
+  --card: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  width: 100%;
+  background: rgba(0,0,0,0.85);
+  padding: 12px;
+  text-align: center;
+  z-index: 100;
+}
+
+nav a {
+  margin: 0 12px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 100vh;
+  padding: 80px 10%;
+  gap: 40px;
+  background: linear-gradient(to right, #020617, #0f172a);
+}
+
+.hero-text h1 { font-size: 3rem; }
+.hero-text h3 { color: var(--accent); }
+.hero-text p { line-height: 1.6; }
+
+.hero img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* BUTTON */
+.btn {
+  padding: 10px 20px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* SECTION */
+section {
+  padding: 60px 10%;
+}
+
+h2 { margin-bottom: 20px; }
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* FORM */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+}
+
+#statusMsg {
+  margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero img {
+    max-width: 300px;
+    margin: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#contact">Contact</a>
+  <button onclick="toggleMode()">🌙</button>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-text">
+    <h1 id="heroTitle">Kinzang Wangchuk</h1>
+    <h3 id="heroSubtitle">ICT Graduate | Network & System Support | UI/UX</h3>
+    <p id="heroDesc">
+      Specialized in network infrastructure, UniFi controller, CCTV systems and UI/UX.
+    </p>
+    <button class="btn" onclick="scrollToSection('contact')">Contact Me</button>
+  </div>
+
+  <img id="heroImage" src="img1.jpeg">
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+
+  <div class="grid">
+    <div class="card">
+      IT graduate from GCIT with strong interest in networking,
+      system administration, and frontend development.
+    </div>
+
+    <div class="card">
+      <h3>Core Interests</h3>
+      <ul>
+        <li>UI/UX Design</li>
+        <li>Web Development</li>
+        <li>Application Development</li>
+        <li>WordPress Maintenance</li>
+        <li>Networking & Infrastructure</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2>Professional Experience</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>UniFi Controller</h3>
+      AP reset, client control, guest voucher, hidden network setup
+    </div>
+
+    <div class="card">
+      <h3>Hikvision CCTV</h3>
+      Maintenance, playback troubleshooting, system rebuild
+    </div>
+
+    <div class="card">
+      <h3>Dahua DVR</h3>
+      Setup, monitoring, recording fix, recovery process
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+
+  <p>📞 +975 17664477 / +975 77435371</p>
+  <p>📧 wkinzang302@gmail.com</p>
+
+  <form id="contactForm">
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <textarea id="message" placeholder="Message" required></textarea>
+    <button class="btn">Send Message</button>
+    <p id="statusMsg"></p>
+  </form>
+</section>
+
+<script>
+// HERO DATA
+const heroData = {
+  home: { title:"Kinzang Wangchuk", subtitle:"ICT Graduate | Network & System Support | UI/UX", desc:"Specialized in networking and systems.", img:"img1.jpeg"},
+  about: { title:"About Me", subtitle:"Passionate IT Professional", desc:"Focused on networking and development.", img:"img2.jpeg"},
+  experience: { title:"Experience", subtitle:"Hands-on ICT Skills", desc:"Experienced in UniFi & CCTV systems.", img:"img3.jpeg"},
+  contact: { title:"Contact", subtitle:"Let’s Connect", desc:"Reach out anytime.", img:"img4.jpeg"}
+};
+
+function updateHero(section) {
+  document.getElementById("heroTitle").innerText = heroData[section].title;
+  document.getElementById("heroSubtitle").innerText = heroData[section].subtitle;
+  document.getElementById("heroDesc").innerText = heroData[section].desc;
+  document.getElementById("heroImage").src = heroData[section].img;
+}
+
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", function() {
+    updateHero(this.getAttribute("href").replace("#",""));
+  });
+});
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
+
+function toggleMode() {
+  document.body.classList.toggle("light");
+}
+
+/* GOOGLE SHEETS SUBMISSION */
+document.getElementById("contactForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const status = document.getElementById("statusMsg");
+
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value
+  };
+
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbx1ke3R1cyXdXkvTX2Id22bfzsWQhAJFg-kGVju85Mdx2fi1B1QW0wr5mdZN1uPMu2_/exec", {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    status.innerText = "✅ Message sent successfully";
+    this.reset();
+
+  } catch {
+    status.innerText = "❌ Failed to send.";
+  }
+});
+</script>
+
+</body>
+</html>
